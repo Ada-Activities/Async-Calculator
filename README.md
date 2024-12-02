@@ -1,6 +1,6 @@
 # Async Calculator
 
-Extra Practice for Async functions
+Extra practice for Async functions
 
 ## Setup
 
