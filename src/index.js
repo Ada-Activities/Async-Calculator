@@ -104,6 +104,48 @@ const distanceAsync = (a, b) => {
   const ac = new AsyncCalculator();  // no delay, so as fast as possible,
   // but still async
 
-  // TODO: find the distance
+  return Promise.all([ac.mult(a, a), ac.mult(b, b)])
+    .then(products => {
+      const aa = products[0];
+      const bb = products[1];
+      return ac.add(aa, bb);
+    })
+    .then(sum => {
+      return ac.sqrt(sum);
+    });
 };
 
+distanceAsync(3, 4).then(result => {
+  console.log(result);
+})
+  .catch(err => {
+    console.log(err);
+  });
+
+//
+// Same solution, but using async/await keywords
+///////////////////////////////////////////////////////
+
+const distance = async (a, b) => {
+  const ac = new AsyncCalculator();
+  const aa = await ac.mult(a, a);
+  const bb = await ac.mult(b, b);
+  const sum = await ac.add(aa, bb);
+  const result = await ac.sqrt(sum);
+
+  return result;
+};
+
+// await may ONLY be used in an async method, hence these wrappers
+const main1 = async () => {
+  const med = await distance(5, 12);
+  console.log(med);
+};
+
+const main2 = async () => {
+  const long = await distanceAsync(8, 15);
+  console.log(long);
+};
+
+main1();
+main2();
