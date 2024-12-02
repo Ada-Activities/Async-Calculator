@@ -1,6 +1,6 @@
-# Composing Async Functions
+# Async Calculator
 
-Activity for Calling APIs Asynchronously
+Extra Practice for Async functions
 
 ## Setup
 
